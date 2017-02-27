@@ -8,7 +8,7 @@
 
 import Foundation
 class BackendlessAPI {
-    //Managers
+    
     let APP_ID = "204914E5-38EB-6319-FF36-0C1EE7666C00"
     let SECRET_KEY = "A70D8623-F44E-D1B6-FF27-4132A62F6900"
     let VERSION_NUM = "v1"

@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		D23129FFE45637F5DDCE2F8B /* Pods_Velik.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 02C77C42DB9017CE09442E0C /* Pods_Velik.framework */; };
 		E9DAFB161E518E5400284AA2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9DAFB151E518E5400284AA2 /* AppDelegate.swift */; };
-		E9DAFB181E518E5400284AA2 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9DAFB171E518E5400284AA2 /* ViewController.swift */; };
+		E9DAFB181E518E5400284AA2 /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9DAFB171E518E5400284AA2 /* LoginController.swift */; };
 		E9DAFB1B1E518E5400284AA2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E9DAFB191E518E5400284AA2 /* Main.storyboard */; };
 		E9DAFB1D1E518E5400284AA2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E9DAFB1C1E518E5400284AA2 /* Assets.xcassets */; };
 		E9DAFB201E518E5400284AA2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E9DAFB1E1E518E5400284AA2 /* LaunchScreen.storyboard */; };
@@ -23,7 +23,7 @@
 		5CF0C716A0EB536269D92D33 /* Pods-Velik.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Velik.release.xcconfig"; path = "Pods/Target Support Files/Pods-Velik/Pods-Velik.release.xcconfig"; sourceTree = "<group>"; };
 		E9DAFB121E518E5400284AA2 /* Velik.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Velik.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E9DAFB151E518E5400284AA2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		E9DAFB171E518E5400284AA2 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		E9DAFB171E518E5400284AA2 /* LoginController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
 		E9DAFB1A1E518E5400284AA2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		E9DAFB1C1E518E5400284AA2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E9DAFB1F1E518E5400284AA2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -84,7 +84,7 @@
 			isa = PBXGroup;
 			children = (
 				E9DAFB151E518E5400284AA2 /* AppDelegate.swift */,
-				E9DAFB171E518E5400284AA2 /* ViewController.swift */,
+				E9DAFB171E518E5400284AA2 /* LoginController.swift */,
 				E9DAFB291E51998100284AA2 /* BackendlessAPI.swift */,
 				E9DAFB191E518E5400284AA2 /* Main.storyboard */,
 				E9DAFB1C1E518E5400284AA2 /* Assets.xcassets */,
@@ -218,7 +218,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E9DAFB181E518E5400284AA2 /* ViewController.swift in Sources */,
+				E9DAFB181E518E5400284AA2 /* LoginController.swift in Sources */,
 				E9DAFB161E518E5400284AA2 /* AppDelegate.swift in Sources */,
 				E9DAFB2A1E51998100284AA2 /* BackendlessAPI.swift in Sources */,
 			);
