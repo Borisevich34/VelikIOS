@@ -1,0 +1,6 @@
+framework module Pods_Velik {
+  umbrella header "Pods-Velik-umbrella.h"
+
+  export *
+  module * { export * }
+}
