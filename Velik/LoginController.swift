@@ -6,6 +6,9 @@
 //  Copyright © 2017 Pavel Borisevich. All rights reserved.
 //
 
+//borisevich_pavel@bk.ru
+//Borisevich34
+
 import UIKit
 
 class LoginController: UIViewController {
@@ -50,7 +53,7 @@ class LoginController: UIViewController {
         }
     }
     
-    override func viewDidAppear(_ animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         if isLoggedIn {
             performSegue(withIdentifier: "tabController", sender: self)
         }
@@ -61,19 +64,35 @@ class LoginController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
 
+    @IBAction func donePressed(_ sender: Any) {
+    }
+    
     @IBAction func registerPressed(_ sender: UIButton) {
         if isRegestred {
             
-            //MARK - Backendless login
-            
-            performSegue(withIdentifier: "tabController", sender: self)
+            if let fault = BackendlessAPI.shared.syncLoginUser(email: userName.text ?? "", password: email.text ?? "") {
+                runAlert(title: "Login error", informativeText: fault.message ?? "Can't login, please try again")
+            }
+            else {
+                performSegue(withIdentifier: "tabController", sender: self)
+            }
         }
         else {
-            
-            //MARK - Backendless registration
-            
-            isRegestred = true
-            moveToLogin()
+            //MARK - add properties
+            var properties = [String : Any]()
+            properties["name"] = userName.text ?? ""
+            properties["password"] = password.text ?? ""
+            properties["email"] = email.text ?? ""
+            if let fault = BackendlessAPI.shared.syncRegisterUserWithProperties(properties) {
+                runAlert(title: "Registration error", informativeText: fault.message ?? "Can't register, please try again")
+            }
+            else {
+                let defaults = UserDefaults.standard
+                defaults.set(true, forKey: "isRegestred")
+                defaults.synchronize()
+                isRegestred = true
+                moveToLogin()
+            }
         }
     }
     
@@ -94,6 +113,12 @@ class LoginController: UIViewController {
         var buttonFrame = registerButton.frame
         buttonFrame.origin.y -= 76
         registerButton.frame = buttonFrame
+    }
+    
+    private func runAlert(title: String, informativeText: String) {
+        let alert = UIAlertController(title: "\(title)\n", message: informativeText, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
+        present(alert, animated: true, completion: nil)
     }
     
     deinit {

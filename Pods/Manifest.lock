@@ -1,12 +1,22 @@
 PODS:
   - Backendless-ios-SDK (3.0.44)
+  - GoogleMaps (2.2.0):
+    - GoogleMaps/Maps (= 2.2.0)
+  - GoogleMaps/Base (2.2.0)
+  - GoogleMaps/Maps (2.2.0):
+    - GoogleMaps/Base
+  - MMNumberKeyboard (0.1.6)
 
 DEPENDENCIES:
   - Backendless-ios-SDK
+  - GoogleMaps
+  - MMNumberKeyboard
 
 SPEC CHECKSUMS:
   Backendless-ios-SDK: 4f7bec980154a9371ad9ba7edbf53e02b33a76e3
+  GoogleMaps: 104c418d61ab8a05dff06ed0784c25ea9d37da45
+  MMNumberKeyboard: 4bac4f0402ef73c92bb6594d9c7469a9add63589
 
-PODFILE CHECKSUM: 9a24d7426f53e4d0ff172341eed09a61959b00e3
+PODFILE CHECKSUM: c2035b86873807eb519745dcd9bd9b1d5a5c436e
 
-COCOAPODS: 1.1.0.rc.3
+COCOAPODS: 1.2.1.beta.1

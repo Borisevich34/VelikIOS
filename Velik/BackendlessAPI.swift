@@ -14,26 +14,39 @@ class BackendlessAPI {
     let VERSION_NUM = "v1"
     
     var backendless = Backendless.sharedInstance()
-    var shared = BackendlessAPI()
+    static var shared = BackendlessAPI()
     
     init() {
         backendless?.initApp(APP_ID, secret: SECRET_KEY, version: VERSION_NUM)
-        
-        
-        //backendless?.userService.registering(user)
-        
-        // If you plan to use Backendless Media Service, uncomment the following line (iOS ONLY!)
-        // backendless.mediaService = MediaService()
     }
     
-    func registerUserWithEmail(email: String, password: String) -> Bool {
-        let user: BackendlessUser = BackendlessUser()
-        user.email = email as NSString
-        user.password = password as NSString
+    func syncRegisterUserWithProperties(_ properties: [String : Any]) -> Fault? {
         
-        return true
+        var fault : Fault? = nil
+        let user = BackendlessUser(properties: properties)
+        _ = backendless?.userService.registering(user, error: &fault)
+    
+        return fault
     }
     
-
+    func syncLoginUser(email: String, password: String) -> Fault? {
+        var fault : Fault? = nil
+        guard (backendless?.userService.login(email, password: password, error: &fault)) != nil else {
+            return fault
+        }
+        backendless?.userService.setStayLoggedIn(true)
+        return fault
+    }
     
+    func setNeedToStayLogged(_ needToStayLogged: Bool) {
+        backendless?.userService.setStayLoggedIn(true)
+    }
+    func isNeedToStayLogged() -> Bool? {
+        return backendless?.userService.isStayLoggedIn
+    }
+    
+    func userLogout() {
+        var logoutFault : Fault? = nil
+        _ = backendless?.userService.logoutError(&logoutFault)
+    }
 }
