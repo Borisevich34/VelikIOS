@@ -11,18 +11,4 @@ import UIKit
 class DayCell: UICollectionViewCell {
     private var isWorking = true
     @IBOutlet weak var dayName: UILabel!
-    var isWorkingDay: Bool {
-        get {
-            return isWorking
-        }
-        set {
-            if newValue {
-                backgroundColor = UIColor.green
-            }
-            else {
-                backgroundColor = UIColor.red
-            }
-            isWorking = newValue
-        }
-    }
 }

@@ -11,10 +11,10 @@ import GoogleMaps
 
 class MapController: UIViewController {
     
-    var radius = 5000000
-    @IBOutlet weak var viewForMap: UIView!
+    var radius = 7000
     
     private var mapView: GMSMapView!
+    var stores: [GeoPoint: Store?] = [:]
     
     override func loadView() {
         
@@ -25,7 +25,6 @@ class MapController: UIViewController {
         mapView.delegate = self
         self.view = mapView
         mapView.isMyLocationEnabled = true
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -46,25 +45,47 @@ class MapController: UIViewController {
 //            print("User didn't alow using location")
 //        }
         
+        
+        
+        mapView.clear()
+        stores.removeAll()
+        
         var fault : Fault? = nil
         let storesQuery = BackendlessGeoQuery(point: GEO_POINT(latitude: 53.9, longitude: 27.5601), radius: Double(radius), units: METERS)
         storesQuery?.includeMeta = 1
         if let collection = BackendlessAPI.shared.backendless?.geoService.getPoints(storesQuery, error: &fault).data {
-            let first = collection.first as! GeoPoint
-            let marker = GMSMarker(position: CLLocationCoordinate2D(latitude: first.latitude.doubleValue, longitude: first.longitude.doubleValue))
-            let firstStore = first.metadata.object(forKey: "store") as! [Store]
-                print("Hey DJ! \(firstStore.first?.information)")
-                marker.title = (firstStore.first?.information ?? "Store") as String
-            marker.map = mapView
-            print("First")
+            let geopoints = collection as? [GeoPoint] ?? [GeoPoint]()
+            geopoints.forEach({ (point) in
+                let marker = GMSMarker(position: CLLocationCoordinate2D(latitude: point.latitude.doubleValue, longitude: point.longitude.doubleValue))
+                let store = (point.metadata.object(forKey: "store") as? [Store])?.first
+                
+                marker.title = (store?.information ?? "Store") as String
+                marker.map = mapView
+                stores[point] = store
+            })
         }
         print(fault?.message ?? "Hasn't fault")
-        print("Collection is ready!")
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let identifier = segue.identifier, identifier == "Radius" {
+        guard let identifier = segue.identifier else { return }
+        if identifier == "Radius" {
             (segue.destination as? RadiusViewController)?.previousController = self
+        }
+        if identifier == "Store" {
+            guard let marker = sender as? GMSMarker else { return }
+            let latitude = marker.position.latitude
+            let longitude = marker.position.longitude
+            if let storeKey = stores.keys.first(where: { (point) -> Bool in
+                if point.latitude.doubleValue == latitude && point.longitude.doubleValue == longitude {
+                    return true
+                }
+                else {
+                    return false
+                }
+            }) {
+                (segue.destination as? StoreViewController)?.store = stores[storeKey] ?? nil
+            }
         }
     }
 }
@@ -73,7 +94,7 @@ extension MapController : GMSMapViewDelegate {
     func mapView(_ mapView: GMSMapView, didTap marker: GMSMarker) -> Bool {
         if let selectedMarker = mapView.selectedMarker, selectedMarker.position.latitude == marker.position.latitude,
             selectedMarker.position.longitude == marker.position.longitude {
-            performSegue(withIdentifier: "Store", sender: self)
+            performSegue(withIdentifier: "Store", sender: marker)
         }
         return false
     }

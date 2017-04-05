@@ -10,6 +10,11 @@
 		D23129FFE45637F5DDCE2F8B /* Pods_Velik.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 02C77C42DB9017CE09442E0C /* Pods_Velik.framework */; };
 		E908D7001E92AB8100614B61 /* DaysViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E908D6FF1E92AB8100614B61 /* DaysViewController.swift */; };
 		E908D7021E92ADED00614B61 /* DayCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E908D7011E92ADED00614B61 /* DayCell.swift */; };
+		E93504821E9385F100C78A28 /* CycleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E93504811E9385F100C78A28 /* CycleViewController.swift */; };
+		E93504871E93881300C78A28 /* AIDatePickerController.m in Sources */ = {isa = PBXBuildFile; fileRef = E93504861E93881300C78A28 /* AIDatePickerController.m */; };
+		E93504891E9392B800C78A28 /* OrderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E93504881E9392B800C78A28 /* OrderViewController.swift */; };
+		E935048B1E9396F000C78A28 /* CyclesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E935048A1E9396F000C78A28 /* CyclesTableViewController.swift */; };
+		E9A8D3061E93C6EB0095FBF0 /* CycleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9A8D3051E93C6EB0095FBF0 /* CycleCell.swift */; };
 		E9C4E3F51E9268F70085242E /* Cycle.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9C4E3F31E9268F70085242E /* Cycle.swift */; };
 		E9C4E3F61E9268F70085242E /* Strore.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9C4E3F41E9268F70085242E /* Strore.swift */; };
 		E9C4E3F81E9282530085242E /* StoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9C4E3F71E9282530085242E /* StoreViewController.swift */; };
@@ -30,6 +35,13 @@
 		5CF0C716A0EB536269D92D33 /* Pods-Velik.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Velik.release.xcconfig"; path = "Pods/Target Support Files/Pods-Velik/Pods-Velik.release.xcconfig"; sourceTree = "<group>"; };
 		E908D6FF1E92AB8100614B61 /* DaysViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DaysViewController.swift; sourceTree = "<group>"; };
 		E908D7011E92ADED00614B61 /* DayCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DayCell.swift; sourceTree = "<group>"; };
+		E93504811E9385F100C78A28 /* CycleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CycleViewController.swift; sourceTree = "<group>"; };
+		E93504841E93881300C78A28 /* Velik-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Velik-Bridging-Header.h"; sourceTree = "<group>"; };
+		E93504851E93881300C78A28 /* AIDatePickerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AIDatePickerController.h; sourceTree = "<group>"; };
+		E93504861E93881300C78A28 /* AIDatePickerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AIDatePickerController.m; sourceTree = "<group>"; };
+		E93504881E9392B800C78A28 /* OrderViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderViewController.swift; sourceTree = "<group>"; };
+		E935048A1E9396F000C78A28 /* CyclesTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CyclesTableViewController.swift; sourceTree = "<group>"; };
+		E9A8D3051E93C6EB0095FBF0 /* CycleCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CycleCell.swift; sourceTree = "<group>"; };
 		E9C4E3F31E9268F70085242E /* Cycle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Cycle.swift; sourceTree = "<group>"; };
 		E9C4E3F41E9268F70085242E /* Strore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Strore.swift; sourceTree = "<group>"; };
 		E9C4E3F71E9282530085242E /* StoreViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreViewController.swift; sourceTree = "<group>"; };
@@ -75,6 +87,73 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		E93504831E9387FD00C78A28 /* DataPicker */ = {
+			isa = PBXGroup;
+			children = (
+				E93504851E93881300C78A28 /* AIDatePickerController.h */,
+				E93504861E93881300C78A28 /* AIDatePickerController.m */,
+				E93504841E93881300C78A28 /* Velik-Bridging-Header.h */,
+			);
+			name = DataPicker;
+			sourceTree = "<group>";
+		};
+		E935048C1E93A14100C78A28 /* Screens */ = {
+			isa = PBXGroup;
+			children = (
+				E935048F1E93A1C300C78A28 /* Initial */,
+				E935048D1E93A16A00C78A28 /* Map */,
+				E935048E1E93A19800C78A28 /* Store */,
+				E93504911E93A23400C78A28 /* Cycle */,
+				E93504901E93A21F00C78A28 /* Order */,
+			);
+			name = Screens;
+			sourceTree = "<group>";
+		};
+		E935048D1E93A16A00C78A28 /* Map */ = {
+			isa = PBXGroup;
+			children = (
+				E9E429271E648430001D7913 /* MapController.swift */,
+				E9C4E3F91E9292D90085242E /* RadiusViewController.swift */,
+			);
+			name = Map;
+			sourceTree = "<group>";
+		};
+		E935048E1E93A19800C78A28 /* Store */ = {
+			isa = PBXGroup;
+			children = (
+				E9C4E3F71E9282530085242E /* StoreViewController.swift */,
+				E935048A1E9396F000C78A28 /* CyclesTableViewController.swift */,
+				E9A8D3051E93C6EB0095FBF0 /* CycleCell.swift */,
+				E908D6FF1E92AB8100614B61 /* DaysViewController.swift */,
+				E908D7011E92ADED00614B61 /* DayCell.swift */,
+			);
+			name = Store;
+			sourceTree = "<group>";
+		};
+		E935048F1E93A1C300C78A28 /* Initial */ = {
+			isa = PBXGroup;
+			children = (
+				E9DAFB171E518E5400284AA2 /* LoginController.swift */,
+			);
+			name = Initial;
+			sourceTree = "<group>";
+		};
+		E93504901E93A21F00C78A28 /* Order */ = {
+			isa = PBXGroup;
+			children = (
+				E93504881E9392B800C78A28 /* OrderViewController.swift */,
+			);
+			name = Order;
+			sourceTree = "<group>";
+		};
+		E93504911E93A23400C78A28 /* Cycle */ = {
+			isa = PBXGroup;
+			children = (
+				E93504811E9385F100C78A28 /* CycleViewController.swift */,
+			);
+			name = Cycle;
+			sourceTree = "<group>";
+		};
 		E9C4E3F21E9268D20085242E /* Entities */ = {
 			isa = PBXGroup;
 			children = (
@@ -106,14 +185,10 @@
 		E9DAFB141E518E5400284AA2 /* Velik */ = {
 			isa = PBXGroup;
 			children = (
+				E93504831E9387FD00C78A28 /* DataPicker */,
 				E9C4E3F21E9268D20085242E /* Entities */,
+				E935048C1E93A14100C78A28 /* Screens */,
 				E9DAFB151E518E5400284AA2 /* AppDelegate.swift */,
-				E9DAFB171E518E5400284AA2 /* LoginController.swift */,
-				E9C4E3F91E9292D90085242E /* RadiusViewController.swift */,
-				E908D6FF1E92AB8100614B61 /* DaysViewController.swift */,
-				E908D7011E92ADED00614B61 /* DayCell.swift */,
-				E9C4E3F71E9282530085242E /* StoreViewController.swift */,
-				E9E429271E648430001D7913 /* MapController.swift */,
 				E9DAFB291E51998100284AA2 /* BackendlessAPI.swift */,
 				E9DAFB191E518E5400284AA2 /* Main.storyboard */,
 				E9DAFB1C1E518E5400284AA2 /* Assets.xcassets */,
@@ -158,6 +233,7 @@
 				TargetAttributes = {
 					E9DAFB111E518E5400284AA2 = {
 						CreatedOnToolsVersion = 8.1;
+						LastSwiftMigration = 0820;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -248,6 +324,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E9E429281E648430001D7913 /* MapController.swift in Sources */,
+				E9A8D3061E93C6EB0095FBF0 /* CycleCell.swift in Sources */,
 				E9C4E3F51E9268F70085242E /* Cycle.swift in Sources */,
 				E908D7021E92ADED00614B61 /* DayCell.swift in Sources */,
 				E9C4E3F61E9268F70085242E /* Strore.swift in Sources */,
@@ -255,7 +332,11 @@
 				E9C4E3FA1E9292D90085242E /* RadiusViewController.swift in Sources */,
 				E9DAFB161E518E5400284AA2 /* AppDelegate.swift in Sources */,
 				E908D7001E92AB8100614B61 /* DaysViewController.swift in Sources */,
+				E935048B1E9396F000C78A28 /* CyclesTableViewController.swift in Sources */,
 				E9DAFB2A1E51998100284AA2 /* BackendlessAPI.swift in Sources */,
+				E93504871E93881300C78A28 /* AIDatePickerController.m in Sources */,
+				E93504821E9385F100C78A28 /* CycleViewController.swift in Sources */,
+				E93504891E9392B800C78A28 /* OrderViewController.swift in Sources */,
 				E9C4E3F81E9282530085242E /* StoreViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -378,11 +459,14 @@
 			baseConfigurationReference = 074CD079470FD18583C53A1F /* Pods-Velik.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = Velik/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.borisevich.Velik;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Velik/Velik-Bridging-Header.h";
 				"SWIFT_OBJC_BRIDGING_HEADER[arch=*]" = "${PODS_ROOT}/Headers/Public/Backendless-ios-SDK/Backendless-With-Media-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
@@ -392,10 +476,12 @@
 			baseConfigurationReference = 5CF0C716A0EB536269D92D33 /* Pods-Velik.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = Velik/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.borisevich.Velik;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Velik/Velik-Bridging-Header.h";
 				"SWIFT_OBJC_BRIDGING_HEADER[arch=*]" = "${PODS_ROOT}/Headers/Public/Backendless-ios-SDK/Backendless-With-Media-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 			};

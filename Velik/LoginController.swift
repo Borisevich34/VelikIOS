@@ -26,6 +26,8 @@ class LoginController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        registerButton.layer.cornerRadius = 12.0
+        
         let defaults : UserDefaults = UserDefaults.standard
         if let regestred = defaults.value(forKey: "isRegestred") as? Bool {
             isRegestred = regestred
@@ -70,7 +72,9 @@ class LoginController: UIViewController {
     @IBAction func registerPressed(_ sender: UIButton) {
         if isRegestred {
             
-            if let fault = BackendlessAPI.shared.syncLoginUser(email: userName.text ?? "", password: email.text ?? "") {
+            //MARK - for tests
+            //if let fault = BackendlessAPI.shared.syncLoginUser(email: userName.text ?? "", password: email.text ?? "") {
+            if let fault = BackendlessAPI.shared.syncLoginUser(email: "borisevich_pavel@bk.ru", password: "Borisevich34") {
                 runAlert(title: "Login error", informativeText: fault.message ?? "Can't login, please try again")
             }
             else {

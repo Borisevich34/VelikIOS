@@ -15,11 +15,13 @@ class RadiusViewController: UIViewController, MMNumberKeyboardDelegate {
 
     @IBOutlet weak var radiusView: UIView!
     @IBOutlet weak var radiusField: UITextField!
+    @IBOutlet weak var cancelButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         radiusView.layer.cornerRadius = 10.0
+        cancelButton.layer.cornerRadius = 8.0
         let keyboard = MMNumberKeyboard(frame: CGRect.zero)
         keyboard.allowsDecimalPoint = true
         keyboard.delegate = self
