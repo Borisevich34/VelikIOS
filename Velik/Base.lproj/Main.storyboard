@@ -333,6 +333,9 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Cycle" id="x6A-7p-mT9"/>
+                    <connections>
+                        <outlet property="makeOrderButton" destination="D4V-u1-Z1u" id="Oeo-YG-aTZ"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7Kg-ZL-9Um" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -355,7 +358,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
-                                <state key="normal" title="Confirm order">
+                                <state key="normal" title="Confirm">
                                     <color key="titleColor" name="controlHighlightColor" catalog="System" colorSpace="catalog"/>
                                 </state>
                                 <connections>
@@ -454,6 +457,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="Order" id="iTu-e3-8TP"/>
                     <connections>
+                        <outlet property="confirmButton" destination="ZxE-N0-gBK" id="MeP-EV-7PX"/>
                         <outlet property="finishSet" destination="emw-Z9-SNr" id="Wey-iB-oyr"/>
                         <outlet property="startSet" destination="bMo-kk-a5i" id="yDG-Ml-px6"/>
                         <outlet property="workingHoursView" destination="RVb-28-7Fq" id="IdV-ds-4a5"/>
@@ -596,7 +600,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="qmq-7H-nMg" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="B0c-fC-bul">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="B0c-fC-bul">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -615,7 +619,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="wZC-xl-YZQ" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="" systemItem="downloads" id="KQT-WY-zs1"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Hbc-T8-RgW">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="Hbc-T8-RgW">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -634,7 +638,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="U40-SG-GsV" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" systemItem="search" id="ZSe-Ad-KwS"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Cq9-MF-qa3">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="Cq9-MF-qa3">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -658,8 +662,8 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </tabBar>
                     <connections>
-                        <segue destination="wZC-xl-YZQ" kind="relationship" relationship="viewControllers" id="fAv-vm-WBL"/>
                         <segue destination="U40-SG-GsV" kind="relationship" relationship="viewControllers" id="f3v-P2-t4T"/>
+                        <segue destination="wZC-xl-YZQ" kind="relationship" relationship="viewControllers" id="fAv-vm-WBL"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="M2A-CP-t6Y" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -715,7 +719,7 @@
         <scene sceneID="pzZ-Nx-YWh">
             <objects>
                 <collectionViewController automaticallyAdjustsScrollViewInsets="NO" id="KKn-f7-o6g" customClass="DaysViewController" customModule="Velik" customModuleProvider="target" sceneMemberID="viewController">
-                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="lBt-bH-srV">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" dataMode="prototypes" id="lBt-bH-srV">
                         <rect key="frame" x="0.0" y="0.0" width="343" height="40"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.93725490196078431" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

@@ -11,11 +11,11 @@ import UIKit
 class CycleViewController: UIViewController {
 
     weak var cycle: Cycle?
+    @IBOutlet weak var makeOrderButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        makeOrderButton.layer.cornerRadius = 12.0
     }
 
     override func didReceiveMemoryWarning() {

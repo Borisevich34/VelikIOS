@@ -6,17 +6,20 @@ PODS:
   - GoogleMaps/Maps (2.2.0):
     - GoogleMaps/Base
   - MMNumberKeyboard (0.1.6)
+  - SVProgressHUD (2.1.2)
 
 DEPENDENCIES:
   - Backendless-ios-SDK
   - GoogleMaps
   - MMNumberKeyboard
+  - SVProgressHUD
 
 SPEC CHECKSUMS:
   Backendless-ios-SDK: 4f7bec980154a9371ad9ba7edbf53e02b33a76e3
   GoogleMaps: 104c418d61ab8a05dff06ed0784c25ea9d37da45
   MMNumberKeyboard: 4bac4f0402ef73c92bb6594d9c7469a9add63589
+  SVProgressHUD: c404a55d78acbeb7ebb78b76d3faf986475a6994
 
-PODFILE CHECKSUM: c2035b86873807eb519745dcd9bd9b1d5a5c436e
+PODFILE CHECKSUM: 2d44d2a82541567fc83f352d3efa21df31146887
 
 COCOAPODS: 1.2.1.beta.1

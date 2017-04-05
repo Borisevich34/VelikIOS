@@ -13,11 +13,13 @@ class OrderViewController: UIViewController {
     @IBOutlet weak var workingHoursView: UIView!
     @IBOutlet weak var startSet: UIButton!
     @IBOutlet weak var finishSet: UIButton!
+    @IBOutlet weak var confirmButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         workingHoursView.layer.cornerRadius = 12.0
+        confirmButton.layer.cornerRadius = 12.0
         startSet.layer.cornerRadius = 5.0
         finishSet.layer.cornerRadius = 5.0
     }
