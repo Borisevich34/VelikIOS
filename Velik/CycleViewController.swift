@@ -33,6 +33,6 @@ class CycleViewController: UIViewController {
 
 extension CycleViewController: UIScrollViewDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        pagesControl.currentPage = Int(scrollView.contentOffset.x/scrollView.frame.width)
+        pagesControl.currentPage = Int(scrollView.contentOffset.x/scrollView.frame.width + 0.5)
     }
 }

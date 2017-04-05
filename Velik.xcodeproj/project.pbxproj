@@ -465,7 +465,6 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.borisevich.Velik;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Velik/Velik-Bridging-Header.h";
-				"SWIFT_OBJC_BRIDGING_HEADER[arch=*]" = "${PODS_ROOT}/Headers/Public/Backendless-ios-SDK/Backendless-With-Media-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 			};
@@ -482,7 +481,6 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.borisevich.Velik;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Velik/Velik-Bridging-Header.h";
-				"SWIFT_OBJC_BRIDGING_HEADER[arch=*]" = "${PODS_ROOT}/Headers/Public/Backendless-ios-SDK/Backendless-With-Media-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
