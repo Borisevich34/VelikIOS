@@ -10,6 +10,9 @@ import UIKit
 
 class OrderViewController: UIViewController {
 
+    weak var cycle: Cycle?
+    weak var store: Store?
+    
     @IBOutlet weak var workingHoursView: UIView!
     @IBOutlet weak var startSet: UIButton!
     @IBOutlet weak var finishSet: UIButton!
@@ -27,11 +30,11 @@ class OrderViewController: UIViewController {
         
         startTime.text = finishTime.text   //MARK - end of working day
         let startTimeComponents = startTime.text?.components(separatedBy: " : ")
-        if hours <= Int(startTimeComponents!.first!)! {
-            if minuts <= Int(startTimeComponents!.last!)! {
+        let firstComponent = Int(startTimeComponents!.first!)!
+        let secondComponent = Int(startTimeComponents!.last!)!
+        if hours < firstComponent || (hours == firstComponent && minuts <= secondComponent) {
                 let timeInFormat = "\(hours) : "
                 startTime.text = timeInFormat.appending(minuts < 10 ? "0\(minuts)" : "\(minuts)")
-            }
         }
 
         workingHoursView.layer.cornerRadius = 12.0
@@ -42,14 +45,7 @@ class OrderViewController: UIViewController {
 
     override func viewDidAppear(_ animated: Bool) {
         if startTime.text == finishTime.text {
-            
-            //MARK - unwind to Map
-            if let mapController = navigationController?.viewControllers.first(where: { (controller) -> Bool in
-                controller.isKind(of: MapController.classForCoder())
-            }){
-                _ = navigationController?.popToViewController(mapController, animated: true)
-                runAlert(title: "Sorry", informativeText: "Store is not working now")
-            }
+            unwindSegue("Store is not working now")
         }
     }
     
@@ -116,6 +112,26 @@ class OrderViewController: UIViewController {
     }
 
     @IBAction func confirmPressed(_ sender: UIButton) {
-        //MARK - Unwind segue
+        var message = "Order completed"
+        cycle?.state = NSNumber(integerLiteral: 2)
+        var fault: Fault? = nil
+        if BackendlessAPI.shared.backendless?.persistenceService.update(cycle, error: &fault) == nil {
+            message = fault?.message ?? "Update is failed"
+            
+        }
+        else if let channel = (store?.objectId as String?),
+            BackendlessAPI.shared.backendless?.messagingService.publish(channel, message: "Hello", error: &fault) == nil {
+            message = fault?.message ?? "Message is not recieved"
+        }
+        unwindSegue(message)
+    }
+    
+    private func unwindSegue(_ message: String) {
+        if let mapController = navigationController?.viewControllers.first(where: { (controller) -> Bool in
+            controller.isKind(of: MapController.classForCoder())
+        }){
+            _ = navigationController?.popToViewController(mapController, animated: true)
+            runAlert(title: "Sorry", informativeText: message)
+        }
     }
 }

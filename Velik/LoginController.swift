@@ -70,34 +70,38 @@ class LoginController: UIViewController {
     }
     
     @IBAction func registerPressed(_ sender: UIButton) {
-        if isRegestred {
-            
-            //MARK - for tests
-            //if let fault = BackendlessAPI.shared.syncLoginUser(email: userName.text ?? "", password: email.text ?? "") {
-            if let fault = BackendlessAPI.shared.syncLoginUser(email: "borisevich_pavel@bk.ru", password: "Borisevich34") {
-                runAlert(title: "Login error", informativeText: fault.message ?? "Can't login, please try again")
-            }
-            else {
-                performSegue(withIdentifier: "tabController", sender: self)
-            }
+        //MARK - for tests
+        if let fault = BackendlessAPI.shared.syncLoginUser(email: "borisevich_pavel@bk.ru", password: "Borisevich34") {
+            runAlert(title: "Login error", informativeText: fault.message ?? "Can't login, please try again")
         }
         else {
-            //MARK - add properties
-            var properties = [String : Any]()
-            properties["name"] = userName.text ?? ""
-            properties["password"] = password.text ?? ""
-            properties["email"] = email.text ?? ""
-            if let fault = BackendlessAPI.shared.syncRegisterUserWithProperties(properties) {
-                runAlert(title: "Registration error", informativeText: fault.message ?? "Can't register, please try again")
-            }
-            else {
-                let defaults = UserDefaults.standard
-                defaults.set(true, forKey: "isRegestred")
-                defaults.synchronize()
-                isRegestred = true
-                moveToLogin()
-            }
+            performSegue(withIdentifier: "tabController", sender: self)
         }
+//        if isRegestred {
+//            if let fault = BackendlessAPI.shared.syncLoginUser(email: userName.text ?? "", password: email.text ?? "") {
+//                runAlert(title: "Login error", informativeText: fault.message ?? "Can't login, please try again")
+//            }
+//            else {
+//                performSegue(withIdentifier: "tabController", sender: self)
+//            }
+//        }
+//        else {
+//            //MARK - add properties
+//            var properties = [String : Any]()
+//            properties["name"] = userName.text ?? ""
+//            properties["password"] = password.text ?? ""
+//            properties["email"] = email.text ?? ""
+//            if let fault = BackendlessAPI.shared.syncRegisterUserWithProperties(properties) {
+//                runAlert(title: "Registration error", informativeText: fault.message ?? "Can't register, please try again")
+//            }
+//            else {
+//                let defaults = UserDefaults.standard
+//                defaults.set(true, forKey: "isRegestred")
+//                defaults.synchronize()
+//                isRegestred = true
+//                moveToLogin()
+//            }
+//        }
     }
     
     private func moveToLogin() {

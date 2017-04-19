@@ -11,6 +11,8 @@ import UIKit
 class CycleViewController: UIViewController {
 
     weak var cycle: Cycle?
+    weak var store: Store?
+    
     @IBOutlet weak var makeOrderButton: UIButton!
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var pagesControl: UIPageControl!
@@ -28,6 +30,15 @@ class CycleViewController: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard let identifier = segue.identifier else { return }
+        if identifier == "Order" {
+            let destination = (segue.destination as? OrderViewController)
+            destination?.cycle = cycle
+            destination?.store = store
+        }
     }
 }
 

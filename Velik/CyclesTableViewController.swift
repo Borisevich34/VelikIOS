@@ -60,7 +60,7 @@ class CyclesTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cycle", for: indexPath) as? CycleCell
 
-        cell?.nameOfCycle.text = cycles[indexPath.row].name as? String
+        cell?.nameOfCycle.text = cycles[indexPath.row].name as String?
         return cell ?? UITableViewCell()
     }
 

@@ -58,15 +58,16 @@ class StoreViewController: UIViewController {
             }
         }
         
-        //MARK - not for diplom
-        
-//        if identifier == "Days" {
-//
-//        }
+        //  MARK - not for diplom
+        //
+        //  if identifier == "Days" {
+        //
+        //  }
         
         if identifier == "CycleDetail" {
             let destination = (segue.destination as? CycleViewController)
             destination?.cycle = selectedCycle
+            destination?.store = store
         }
     }
 }
