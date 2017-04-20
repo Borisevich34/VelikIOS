@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SVProgressHUD
 
 class StoreViewController: UIViewController {
     
@@ -22,6 +23,7 @@ class StoreViewController: UIViewController {
     }
 
     override func viewDidAppear(_ animated: Bool) {
+        SVProgressHUD.dismiss()
         if store == nil {
             _ = navigationController?.popViewController(animated: true)
             runAlert(title: "Sorry", informativeText: "You need to update map")
@@ -66,6 +68,11 @@ class StoreViewController: UIViewController {
         
         if identifier == "CycleDetail" {
             let destination = (segue.destination as? CycleViewController)
+            let backItem = UIBarButtonItem()
+            backItem.title = "Back"
+            navigationItem.backBarButtonItem = backItem
+            destination?.navigationItem.title = (selectedCycle?.name as String?)
+    
             destination?.cycle = selectedCycle
             destination?.store = store
         }

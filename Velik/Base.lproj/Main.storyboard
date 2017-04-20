@@ -190,7 +190,11 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="Map" id="565-6Q-cWo">
-                        <barButtonItem key="leftBarButtonItem" systemItem="refresh" id="vXp-9M-33y"/>
+                        <barButtonItem key="leftBarButtonItem" systemItem="refresh" id="vXp-9M-33y">
+                            <connections>
+                                <action selector="updateMap:" destination="vK4-C8-hyF" id="HRm-ot-zIa"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Filter" id="N3D-HU-gtF">
                             <connections>
                                 <segue destination="fLv-Ui-sFK" kind="presentation" identifier="Radius" id="yxx-mF-PPC"/>
@@ -217,7 +221,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name of choosen cycle" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lup-JR-vT8">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Images of the cycle" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lup-JR-vT8">
                                 <rect key="frame" x="77" y="72" width="221" height="52"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="52" id="2sL-e7-p5U"/>
@@ -227,7 +231,7 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="xSW-k5-wCh">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="xSW-k5-wCh">
                                 <rect key="frame" x="16" y="327" width="343" height="128"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
@@ -262,58 +266,61 @@
                                     <color key="titleColor" name="controlHighlightColor" catalog="System" colorSpace="catalog"/>
                                 </state>
                                 <connections>
-                                    <segue destination="vlw-Ie-mcK" kind="show" id="WLT-h6-eDg"/>
+                                    <segue destination="vlw-Ie-mcK" kind="show" identifier="Order" id="WLT-h6-eDg"/>
                                 </connections>
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wIY-OH-ph1">
-                                <rect key="frame" x="80" y="124" width="216" height="166"/>
+                                <rect key="frame" x="-12" y="124" width="400" height="166"/>
                                 <subviews>
                                     <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" horizontalCompressionResistancePriority="250" verticalCompressionResistancePriority="250" placeholderIntrinsicWidth="216" placeholderIntrinsicHeight="170" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hIE-LE-gqq">
-                                        <rect key="frame" x="4" y="0.0" width="208" height="166"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="400" height="166"/>
                                         <subviews>
-                                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="CycleDetail" translatesAutoresizingMaskIntoConstraints="NO" id="GnU-aB-PFM">
-                                                <rect key="frame" x="420" y="8" width="200" height="150"/>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="GnU-aB-PFM">
+                                                <rect key="frame" x="900" y="8" width="200" height="150"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="150" id="Njj-WH-qKu"/>
                                                     <constraint firstAttribute="width" constant="200" id="St2-Gb-8AB"/>
                                                 </constraints>
                                             </imageView>
-                                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="CycleDetail" translatesAutoresizingMaskIntoConstraints="NO" id="15X-EU-zmo">
-                                                <rect key="frame" x="212" y="8" width="200" height="150"/>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="15X-EU-zmo">
+                                                <rect key="frame" x="500" y="8" width="200" height="150"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="150" id="6qv-Zi-tfD"/>
                                                     <constraint firstAttribute="width" constant="200" id="ndu-6f-ORI"/>
                                                 </constraints>
                                             </imageView>
-                                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="CycleDetail" translatesAutoresizingMaskIntoConstraints="NO" id="hi9-z3-myc">
-                                                <rect key="frame" x="4" y="8" width="200" height="150"/>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="hi9-z3-myc">
+                                                <rect key="frame" x="100" y="8" width="200" height="150"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="200" id="8BV-Ya-Ta2"/>
                                                     <constraint firstAttribute="height" constant="150" id="Jnm-CX-fzj"/>
                                                 </constraints>
                                             </imageView>
                                         </subviews>
-                                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstItem="15X-EU-zmo" firstAttribute="top" secondItem="hIE-LE-gqq" secondAttribute="top" constant="8" id="6BC-GG-Zro"/>
-                                            <constraint firstItem="GnU-aB-PFM" firstAttribute="leading" secondItem="15X-EU-zmo" secondAttribute="trailing" constant="8" id="DW8-ga-oft"/>
+                                            <constraint firstItem="GnU-aB-PFM" firstAttribute="leading" secondItem="15X-EU-zmo" secondAttribute="trailing" constant="200" id="DW8-ga-oft"/>
                                             <constraint firstItem="hi9-z3-myc" firstAttribute="top" secondItem="hIE-LE-gqq" secondAttribute="top" constant="8" id="J8u-2m-053"/>
                                             <constraint firstAttribute="bottom" secondItem="hi9-z3-myc" secondAttribute="bottom" constant="8" id="JmX-La-jbv"/>
-                                            <constraint firstAttribute="trailing" secondItem="GnU-aB-PFM" secondAttribute="trailing" constant="4" id="SUB-lC-AX3"/>
+                                            <constraint firstAttribute="trailing" secondItem="GnU-aB-PFM" secondAttribute="trailing" constant="100" id="SUB-lC-AX3"/>
                                             <constraint firstItem="GnU-aB-PFM" firstAttribute="top" secondItem="hIE-LE-gqq" secondAttribute="top" constant="8" id="aaH-24-MeL"/>
-                                            <constraint firstItem="hi9-z3-myc" firstAttribute="leading" secondItem="hIE-LE-gqq" secondAttribute="leading" constant="4" id="gfm-M1-Neu"/>
-                                            <constraint firstItem="15X-EU-zmo" firstAttribute="leading" secondItem="hi9-z3-myc" secondAttribute="trailing" constant="8" id="n0C-mG-tI5"/>
+                                            <constraint firstItem="hi9-z3-myc" firstAttribute="leading" secondItem="hIE-LE-gqq" secondAttribute="leading" constant="100" id="gfm-M1-Neu"/>
+                                            <constraint firstItem="15X-EU-zmo" firstAttribute="leading" secondItem="hi9-z3-myc" secondAttribute="trailing" constant="200" id="n0C-mG-tI5"/>
                                         </constraints>
                                     </scrollView>
                                 </subviews>
-                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="166" id="9rs-dP-Xj5"/>
-                                    <constraint firstItem="hIE-LE-gqq" firstAttribute="trailing" secondItem="wIY-OH-ph1" secondAttribute="trailing" constant="-4" id="PDp-m5-CRI"/>
+                                    <constraint firstItem="hIE-LE-gqq" firstAttribute="trailing" secondItem="wIY-OH-ph1" secondAttribute="trailing" id="PDp-m5-CRI"/>
                                     <constraint firstItem="hIE-LE-gqq" firstAttribute="top" secondItem="wIY-OH-ph1" secondAttribute="top" id="RTK-tN-ugE"/>
-                                    <constraint firstItem="hIE-LE-gqq" firstAttribute="leading" secondItem="wIY-OH-ph1" secondAttribute="leading" constant="4" id="n9J-7N-Sm6"/>
+                                    <constraint firstItem="hIE-LE-gqq" firstAttribute="leading" secondItem="wIY-OH-ph1" secondAttribute="leading" id="n9J-7N-Sm6"/>
                                     <constraint firstItem="hIE-LE-gqq" firstAttribute="bottom" secondItem="wIY-OH-ph1" secondAttribute="bottom" id="xNo-6m-seg"/>
-                                    <constraint firstAttribute="width" constant="216" id="yxA-Kq-vUc"/>
+                                    <constraint firstAttribute="width" constant="400" id="yxA-Kq-vUc"/>
                                 </constraints>
                             </view>
                             <pageControl opaque="NO" contentMode="scaleToFill" enabled="NO" selected="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" hidesForSinglePage="YES" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="7uT-lY-eyg">
@@ -344,9 +351,14 @@
                     </view>
                     <navigationItem key="navigationItem" title="Cycle" id="x6A-7p-mT9"/>
                     <connections>
+                        <outlet property="cycleInfoTextView" destination="xSW-k5-wCh" id="gsV-tc-sq0"/>
                         <outlet property="makeOrderButton" destination="D4V-u1-Z1u" id="Oeo-YG-aTZ"/>
                         <outlet property="pagesControl" destination="7uT-lY-eyg" id="aGQ-m8-RSy"/>
+                        <outlet property="pricePerHour" destination="nhU-Hy-fSE" id="tkb-C4-r4R"/>
                         <outlet property="scrollView" destination="hIE-LE-gqq" id="lcY-7r-pjt"/>
+                        <outletCollection property="collectionOfimages" destination="hi9-z3-myc" collectionClass="NSMutableArray" id="fMc-2D-KHO"/>
+                        <outletCollection property="collectionOfimages" destination="15X-EU-zmo" collectionClass="NSMutableArray" id="yGA-DE-uAT"/>
+                        <outletCollection property="collectionOfimages" destination="GnU-aB-PFM" collectionClass="NSMutableArray" id="bLY-3w-O2c"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7Kg-ZL-9Um" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -493,21 +505,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Information about Store" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="N5Y-Mr-c0w">
-                                <rect key="frame" x="16" y="72" width="343" height="31"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Xyy-9s-Nif">
-                                <rect key="frame" x="16" y="111" width="343" height="128"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            </textView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Availible Cycles" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YuN-jM-81H">
                                 <rect key="frame" x="123" y="360" width="129" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -544,12 +541,20 @@
                                 </subviews>
                                 <color key="backgroundColor" red="0.89411764709999997" green="0.89411764709999997" blue="0.89411764709999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </view>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="0Pb-pY-EU5">
+                                <rect key="frame" x="16" y="80" width="343" height="160"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="Store" id="3sO-H8-Ara"/>
                     <connections>
-                        <outlet property="infoAboutStore" destination="Xyy-9s-Nif" id="mc2-UY-cMc"/>
+                        <outlet property="infoAboutStore" destination="0Pb-pY-EU5" id="DpO-iO-Krh"/>
                         <segue destination="1nM-LE-pa6" kind="show" identifier="CycleDetail" id="1dI-36-jPe"/>
                     </connections>
                 </viewController>
@@ -785,6 +790,5 @@
     </scenes>
     <resources>
         <image name="Cycle" width="128" height="128"/>
-        <image name="CycleDetail" width="170" height="127"/>
     </resources>
 </document>

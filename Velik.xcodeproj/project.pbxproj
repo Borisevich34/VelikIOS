@@ -10,6 +10,7 @@
 		D23129FFE45637F5DDCE2F8B /* Pods_Velik.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 02C77C42DB9017CE09442E0C /* Pods_Velik.framework */; };
 		E908D7001E92AB8100614B61 /* DaysViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E908D6FF1E92AB8100614B61 /* DaysViewController.swift */; };
 		E908D7021E92ADED00614B61 /* DayCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E908D7011E92ADED00614B61 /* DayCell.swift */; };
+		E9346C801EA8F95900484815 /* ImagesHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9346C7F1EA8F95900484815 /* ImagesHelper.swift */; };
 		E93504821E9385F100C78A28 /* CycleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E93504811E9385F100C78A28 /* CycleViewController.swift */; };
 		E93504871E93881300C78A28 /* AIDatePickerController.m in Sources */ = {isa = PBXBuildFile; fileRef = E93504861E93881300C78A28 /* AIDatePickerController.m */; };
 		E93504891E9392B800C78A28 /* OrderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E93504881E9392B800C78A28 /* OrderViewController.swift */; };
@@ -35,6 +36,7 @@
 		5CF0C716A0EB536269D92D33 /* Pods-Velik.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Velik.release.xcconfig"; path = "Pods/Target Support Files/Pods-Velik/Pods-Velik.release.xcconfig"; sourceTree = "<group>"; };
 		E908D6FF1E92AB8100614B61 /* DaysViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DaysViewController.swift; sourceTree = "<group>"; };
 		E908D7011E92ADED00614B61 /* DayCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DayCell.swift; sourceTree = "<group>"; };
+		E9346C7F1EA8F95900484815 /* ImagesHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImagesHelper.swift; sourceTree = "<group>"; };
 		E93504811E9385F100C78A28 /* CycleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CycleViewController.swift; sourceTree = "<group>"; };
 		E93504841E93881300C78A28 /* Velik-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Velik-Bridging-Header.h"; sourceTree = "<group>"; };
 		E93504851E93881300C78A28 /* AIDatePickerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AIDatePickerController.h; sourceTree = "<group>"; };
@@ -85,6 +87,15 @@
 				5CF0C716A0EB536269D92D33 /* Pods-Velik.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		E9346C7E1EA8F92F00484815 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				E93504831E9387FD00C78A28 /* DataPicker */,
+				E9346C7F1EA8F95900484815 /* ImagesHelper.swift */,
+			);
+			name = Helpers;
 			sourceTree = "<group>";
 		};
 		E93504831E9387FD00C78A28 /* DataPicker */ = {
@@ -185,7 +196,7 @@
 		E9DAFB141E518E5400284AA2 /* Velik */ = {
 			isa = PBXGroup;
 			children = (
-				E93504831E9387FD00C78A28 /* DataPicker */,
+				E9346C7E1EA8F92F00484815 /* Helpers */,
 				E9C4E3F21E9268D20085242E /* Entities */,
 				E935048C1E93A14100C78A28 /* Screens */,
 				E9DAFB151E518E5400284AA2 /* AppDelegate.swift */,
@@ -327,6 +338,7 @@
 				E9E429281E648430001D7913 /* MapController.swift in Sources */,
 				E9A8D3061E93C6EB0095FBF0 /* CycleCell.swift in Sources */,
 				E9C4E3F51E9268F70085242E /* Cycle.swift in Sources */,
+				E9346C801EA8F95900484815 /* ImagesHelper.swift in Sources */,
 				E908D7021E92ADED00614B61 /* DayCell.swift in Sources */,
 				E9C4E3F61E9268F70085242E /* Strore.swift in Sources */,
 				E9DAFB181E518E5400284AA2 /* LoginController.swift in Sources */,
