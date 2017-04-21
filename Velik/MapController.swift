@@ -31,46 +31,10 @@ class MapController: UIViewController {
         mapView.isMyLocationEnabled = true
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewDidLoad()
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
 
-        //MARK - need for real device
-        
-        let locationManager = CLLocationManager()
-        locationManager.requestWhenInUseAuthorization()
-        locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
-        locationManager.delegate = self
-        
-        if CLLocationManager.authorizationStatus() == .authorizedWhenInUse {
-            locationManager.startUpdatingLocation()
-        } else if CLLocationManager.authorizationStatus() == .notDetermined {
-            locationManager.requestWhenInUseAuthorization()
-        } else if CLLocationManager.authorizationStatus() == .restricted {
-            print("User didn't alow using location")
-        }
-        
-        mapView.clear()
-        stores.removeAll()
-        
-        var fault : Fault? = nil
-        let storesQuery = BackendlessGeoQuery(point: GEO_POINT(latitude: userLocation?.coordinate.latitude ?? 53.9,
-                                                               longitude: userLocation?.coordinate.longitude ?? 27.5601),
-                                              radius: Double(radius),
-                                              units: METERS)
-        
-        storesQuery?.includeMeta = 1
-        if let collection = BackendlessAPI.shared.backendless?.geoService.getPoints(storesQuery, error: &fault).data {
-            let geopoints = collection as? [GeoPoint] ?? [GeoPoint]()
-            geopoints.forEach({ (point) in
-                let marker = GMSMarker(position: CLLocationCoordinate2D(latitude: point.latitude.doubleValue, longitude: point.longitude.doubleValue))
-                let store = (point.metadata.object(forKey: "store") as? [Store])?.first
-                
-                marker.title = (store?.name ?? "Store") as String
-                marker.map = mapView
-                stores[point] = store
-            })
-        }
-        print(fault?.message ?? "Hasn't fault")
+        updateMap(self)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -79,10 +43,7 @@ class MapController: UIViewController {
             (segue.destination as? RadiusViewController)?.previousController = self
         }
         if identifier == "Store" {
-            guard let marker = sender as? GMSMarker else {
-                SVProgressHUD.dismiss()
-                return
-            }
+            guard let marker = sender as? GMSMarker else { return }
             let latitude = marker.position.latitude
             let longitude = marker.position.longitude
             if let storeKey = stores.keys.first(where: { (point) -> Bool in
@@ -91,35 +52,71 @@ class MapController: UIViewController {
                 (segue.destination as? StoreViewController)?.navigationItem.title = (stores[storeKey])??.name as String?
                 (segue.destination as? StoreViewController)?.store = stores[storeKey] ?? nil
             }
-            else {
-                SVProgressHUD.dismiss()
-            }
         }
     }
     
     @IBAction func updateMap(_ sender: Any) {
+        
         SVProgressHUD.show()
-        
-        mapView.clear()
-        stores.removeAll()
-
-        var fault : Fault? = nil
-        let storesQuery = BackendlessGeoQuery(point: GEO_POINT(latitude: 53.9, longitude: 27.5601), radius: Double(radius), units: METERS)
-        storesQuery?.includeMeta = 1
-        if let collection = BackendlessAPI.shared.backendless?.geoService.getPoints(storesQuery, error: &fault).data {
-            let geopoints = collection as? [GeoPoint] ?? [GeoPoint]()
-            geopoints.forEach({ (point) in
-                let marker = GMSMarker(position: CLLocationCoordinate2D(latitude: point.latitude.doubleValue, longitude: point.longitude.doubleValue))
-                let store = (point.metadata.object(forKey: "store") as? [Store])?.first
-                
-                marker.title = (store?.name ?? "Store") as String
-                marker.map = mapView
-                stores[point] = store
-            })
+        var isNeedToHideHUD = false
+        Timer.scheduledTimer(withTimeInterval: 2.0, repeats: false) { _ in
+            if isNeedToHideHUD {
+                SVProgressHUD.dismiss()
+            }
+            else {
+                isNeedToHideHUD = true
+            }
         }
-        print(fault?.message ?? "Hasn't fault")
-        
-        SVProgressHUD.dismiss(withDelay: 2.0)
+        DispatchQueue.global().async { [weak self] in
+            
+            let locationManager = CLLocationManager()
+            locationManager.requestWhenInUseAuthorization()
+            locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
+            locationManager.delegate = self
+            
+            if CLLocationManager.authorizationStatus() == .authorizedWhenInUse {
+                locationManager.startUpdatingLocation()
+            } else if CLLocationManager.authorizationStatus() == .notDetermined {
+                locationManager.requestWhenInUseAuthorization()
+            } else if CLLocationManager.authorizationStatus() == .restricted {
+                print("User didn't alow using location")
+            }
+            
+            DispatchQueue.main.async {
+                self?.mapView.clear()
+            }
+            self?.stores.removeAll()
+            
+            var fault : Fault? = nil
+            let storesQuery = BackendlessGeoQuery(point: GEO_POINT(latitude: self?.userLocation?.coordinate.latitude ?? 53.9,
+                                                                   longitude: self?.userLocation?.coordinate.longitude ?? 27.5601),
+                                                  radius: Double(self?.radius ?? 7000),
+                                                  units: METERS)
+            
+            storesQuery?.includeMeta = 1
+            if let collection = BackendlessAPI.shared.backendless?.geoService.getPoints(storesQuery, error: &fault).data {
+                let geopoints = collection as? [GeoPoint] ?? [GeoPoint]()
+                geopoints.forEach({ (point) in
+                    let position = CLLocationCoordinate2D(latitude: point.latitude.doubleValue, longitude: point.longitude.doubleValue)
+                    let store = (point.metadata.object(forKey: "store") as? [Store])?.first
+                    DispatchQueue.main.async {
+                        let marker = GMSMarker(position: position)
+                        marker.title = (store?.name ?? "Store") as String
+                        marker.map = self?.mapView
+                    }
+                    self?.stores[point] = store
+                })
+            }
+            print(fault?.message ?? "Hasn't fault")
+            DispatchQueue.main.sync {
+                if isNeedToHideHUD {
+                    SVProgressHUD.dismiss()
+                }
+                else {
+                    isNeedToHideHUD = true
+                }
+            }
+        }
     }
 }
 
@@ -127,19 +124,15 @@ extension MapController : GMSMapViewDelegate {
     func mapView(_ mapView: GMSMapView, didTap marker: GMSMarker) -> Bool {
         if let selectedMarker = mapView.selectedMarker, selectedMarker.position.latitude == marker.position.latitude,
             selectedMarker.position.longitude == marker.position.longitude {
-            DispatchQueue.main.async {
-                SVProgressHUD.show()
-            }
             performSegue(withIdentifier: "Store", sender: marker)
         }
         return false
     }
 }
 
-//MARK - need for real device
 extension MapController : CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        manager.stopUpdatingLocation()  //MARK - comment later
+        manager.stopUpdatingLocation()
         if let userLocation = locations.first {
             self.userLocation = userLocation
             var fault : Fault? = nil

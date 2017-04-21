@@ -39,10 +39,18 @@ class RadiusViewController: UIViewController, MMNumberKeyboardDelegate {
     }
     
     func numberKeyboardShouldReturn(_ numberKeyboard: MMNumberKeyboard!) -> Bool {
+        var isNeedCompletion = false
         if let text = self.radiusField?.text, let radius: Double = Double(text) {
-            self.previousController?.radius = Int(radius)
+            previousController?.radius = Int(radius)
+            isNeedCompletion = true
         }
-        dismiss(animated: true, completion: nil)
+        dismiss(animated: true, completion: { [weak self] in
+            self?.previousController?.updateMap(isNeedCompletion)
+        })
         return true
+    }
+    
+    deinit {
+        print("Goodbye RadiusViewController")
     }
 }
