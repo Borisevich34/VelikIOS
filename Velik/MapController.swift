@@ -59,7 +59,7 @@ class MapController: UIViewController {
         
         SVProgressHUD.show()
         var isNeedToHideHUD = false
-        Timer.scheduledTimer(withTimeInterval: 2.0, repeats: false) { _ in
+        Timer.scheduledTimer(withTimeInterval: 1.0, repeats: false) { _ in
             if isNeedToHideHUD {
                 SVProgressHUD.dismiss()
             }
@@ -107,7 +107,7 @@ class MapController: UIViewController {
                     self?.stores[point] = store
                 })
             }
-            print(fault?.message ?? "Hasn't fault")
+            print(fault?.message ?? "Success")
             DispatchQueue.main.sync {
                 if isNeedToHideHUD {
                     SVProgressHUD.dismiss()

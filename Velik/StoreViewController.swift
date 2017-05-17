@@ -52,19 +52,13 @@ class StoreViewController: UIViewController {
             destination?.delegate = self
             
             var fault : Fault? = nil
-            let storeWithCycles = BackendlessAPI.shared.backendless?.persistenceService.load(store, relations: (["cycles"]), error: &fault) as? Store
+            let storeWithCycles = BackendlessAPI.shared.backendless?.persistenceService.load(store, relations: (["cycles", "geopoint"]), error: &fault) as? Store
             if let cycles = storeWithCycles?.cycles as NSArray? {
                 destination?.cycles = (cycles as? [Cycle])?.filter({ (cycle) -> Bool in
                     return cycle.state == 1
                 }) ?? [Cycle]()
             }
         }
-        
-        //  MARK - not for diplom
-        //
-        //  if identifier == "Days" {
-        //
-        //  }
         
         if identifier == "CycleDetail" {
             let destination = (segue.destination as? CycleViewController)

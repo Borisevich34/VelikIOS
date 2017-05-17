@@ -14,10 +14,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
     
-    
-
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        
         GMSServices.provideAPIKey("AIzaSyCdmewhn92uZUZykrsVsw6wozrsQVH0hRM")
         return true
     }
@@ -41,17 +38,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func applicationWillTerminate(_ application: UIApplication) {
-        guard let isNeedToStayLogged = BackendlessAPI.shared.isNeedToStayLogged() else {
-            return
-        }
-        if !isNeedToStayLogged {
-            BackendlessAPI.shared.userLogout()
-        }
+        BackendlessAPI.shared.userLogout()
     }
-
-    func applicationDidFinishLaunching(_ application: UIApplication) {
-        
-    }
-
 }
 

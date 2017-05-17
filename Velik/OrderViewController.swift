@@ -28,11 +28,18 @@ class OrderViewController: UIViewController {
         let hours = calendar.component(.hour, from: date)
         let minuts = calendar.component(.minute, from: date)
         
-        startTime.text = finishTime.text   //MARK - end of working day
         let startTimeComponents = startTime.text?.components(separatedBy: " : ")
-        let firstComponent = Int(startTimeComponents!.first!)!
-        let secondComponent = Int(startTimeComponents!.last!)!
-        if hours < firstComponent || (hours == firstComponent && minuts <= secondComponent) {
+        let firstStartComponent = Int(startTimeComponents!.first!)!
+        let secondStartComponent = Int(startTimeComponents!.last!)!
+        
+        startTime.text = finishTime.text
+        
+        let finishTimeComponents = finishTime.text?.components(separatedBy: " : ")
+        let firstFinishComponent = Int(finishTimeComponents!.first!)!
+        let secondFinishComponent = Int(finishTimeComponents!.last!)!
+        
+        if (hours < firstFinishComponent || (hours == firstFinishComponent && minuts <= secondFinishComponent)) &&
+            (hours > firstStartComponent || (hours == firstStartComponent && minuts >= secondStartComponent)) {
                 let timeInFormat = "\(hours) : "
                 startTime.text = timeInFormat.appending(minuts < 10 ? "0\(minuts)" : "\(minuts)")
         }
@@ -113,14 +120,19 @@ class OrderViewController: UIViewController {
 
     @IBAction func confirmPressed(_ sender: UIButton) {
         var message = "Order completed"
-        cycle?.state = NSNumber(integerLiteral: 2)
+        cycle?.state = NSNumber(value: 2)
         var fault: Fault? = nil
+        
+        cycle?.location = "\(store?.geopoint?.latitude ?? 0) \(store?.geopoint?.longitude ?? 0)" as NSString
+        cycle?.userEmail = BackendlessAPI.shared.backendless?.userService.currentUser.email
+        cycle?.orderTime = startTime.text as NSString?
+        cycle?.timePeriod = getTimePeriod()
+        
         if BackendlessAPI.shared.backendless?.persistenceService.update(cycle, error: &fault) == nil {
             message = fault?.message ?? "Update is failed"
-            
         }
         else if let channel = (store?.objectId as String?),
-            BackendlessAPI.shared.backendless?.messagingService.publish(channel, message: "Hello", error: &fault) == nil {
+            BackendlessAPI.shared.backendless?.messagingService.publish(channel, message: "Order", error: &fault) == nil {
             message = fault?.message ?? "Message is not recieved"
         }
         unwindSegue(message)
@@ -131,7 +143,18 @@ class OrderViewController: UIViewController {
             controller.isKind(of: MapController.classForCoder())
         }){
             _ = navigationController?.popToViewController(mapController, animated: true)
-            runAlert(title: "Sorry", informativeText: message)
+            runAlert(title: message == "Order completed" ? "Successful" : "Sorry", informativeText: message)
         }
+    }
+    
+    private func getTimePeriod() -> NSNumber {
+        let startTimeComponents = startTime.text?.components(separatedBy: " : ")
+        let firstStartComponent = Int(startTimeComponents!.first!)!
+        let secondStartComponent = Int(startTimeComponents!.last!)!
+        
+        let finishTimeComponents = finishTime.text?.components(separatedBy: " : ")
+        let firstFinishComponent = Int(finishTimeComponents!.first!)!
+        let secondFinishComponent = Int(finishTimeComponents!.last!)!
+        return NSNumber(value: secondFinishComponent - secondStartComponent + (firstFinishComponent - firstStartComponent) * 60)
     }
 }

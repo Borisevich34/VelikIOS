@@ -45,7 +45,6 @@ class DaysViewController: UICollectionViewController {
         return days.count
     }
 
-    //MARK - Last Edit (Colors)
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Day", for: indexPath) as? DayCell

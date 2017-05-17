@@ -33,7 +33,7 @@ class CyclesTableViewController: UITableViewController {
         DispatchQueue.global().async { [weak self] in
             if let store = self?.store {
                 var fault : Fault? = nil
-                let storeWithCycles = BackendlessAPI.shared.backendless?.persistenceService.load(store, relations: (["cycles"]), error: &fault) as? Store
+                let storeWithCycles = BackendlessAPI.shared.backendless?.persistenceService.load(store, relations: (["cycles", "geopoint"]), error: &fault) as? Store
                 if let cyclesFromRequest = storeWithCycles?.cycles as NSArray? {
                     self?.cycles = (cyclesFromRequest as? [Cycle])?.filter({ (cycle) -> Bool in
                         return cycle.state == 1

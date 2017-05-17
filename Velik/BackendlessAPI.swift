@@ -34,15 +34,7 @@ class BackendlessAPI {
         guard (backendless?.userService.login(email, password: password, error: &fault)) != nil else {
             return fault
         }
-        backendless?.userService.setStayLoggedIn(true)
         return fault
-    }
-    
-    func setNeedToStayLogged(_ needToStayLogged: Bool) {
-        backendless?.userService.setStayLoggedIn(true)
-    }
-    func isNeedToStayLogged() -> Bool? {
-        return backendless?.userService.isStayLoggedIn
     }
     
     func userLogout() {
