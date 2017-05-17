@@ -103,7 +103,7 @@ class CompletedOrdersViewController: UITableViewController {
             let firstTimeComponent = Int(orderTimeComponents!.first!)!
             let secondTimeComponent = Int(orderTimeComponents!.last!)!
             
-            cell?.timePeriodLabel.text = "Time period \(firstTimeComponent):\(secondTimeComponent) - \(firstTimeComponent + (secondTimeComponent + timePeriod) / 60) : \((secondTimeComponent + timePeriod) % 60)"
+            cell?.timePeriodLabel.text = "Time period \(firstTimeComponent):\(secondTimeComponent < 10 ? "0\(secondTimeComponent)" : "\(secondTimeComponent)") - \(firstTimeComponent + (secondTimeComponent + timePeriod) / 60) : \(((secondTimeComponent + timePeriod) % 60) < 10 ? "0\((secondTimeComponent + timePeriod) % 60)" : "\((secondTimeComponent + timePeriod) % 60)")"
             
         }
         if let cell = cell {
