@@ -128,18 +128,14 @@ class CompletedOrdersViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         
         if (editingStyle == .delete) {
-            
-            // MARK: - removing on service, then sending a message
-            
             let cycle = cycles[indexPath.row]
-            cycle.location = "" as NSString
+            cycle.location = nil
             cycle.state = NSNumber(value: 0)
-            cycle.userEmail = ""
-            cycle.orderTime = ""
-            cycle.timePeriod = NSNumber(value: 0)
+            cycle.orderTime = nil
+            cycle.timePeriod = nil
             
             var fault: Fault? = nil
-            if BackendlessAPI.shared.backendless?.persistenceService.update(cycle, error: &fault) != nil, let channel = (cycle.objectId as String?) {
+            if BackendlessAPI.shared.backendless?.persistenceService.update(cycle, error: &fault) != nil, let channel = (cycle.storeId as String?) {
                 print(fault?.message ?? "Success")
                 _ = BackendlessAPI.shared.backendless?.messagingService.publish(channel, message: "Cancel Order", error: &fault)
             }
